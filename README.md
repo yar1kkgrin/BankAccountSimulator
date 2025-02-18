@@ -20,5 +20,5 @@
 ## Як запустити
 1. **Клонувати репозиторій**:
    ```sh
-   git clone https://github.com/ТвійUsername/BankAccountSimulator.git
+   git clone https://github.com/yar1kkgrin/BankAccountSimulator.git
    cd BankAccountSimulator
