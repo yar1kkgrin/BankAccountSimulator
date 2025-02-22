@@ -57,19 +57,23 @@ public class BankAccount {
         }
     }
 
-    public void withdraw(double amount) {
-        try {
-            if (balance < amount) {
-                throw new IllegalArgumentException("Insufficient balance for the withdrawal.");
-            }
-
-            balance -= amount;
-            transactionHistory.add("Taken: " + amount);
-            System.out.println("Successfully");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
+    public boolean withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+            return false;
         }
+
+        if (balance < amount) {
+            System.out.println("Insufficient funds.");
+            return false;
+        }
+
+        balance -= amount;
+        transactionHistory.add("Withdrawn: " + amount);
+        System.out.println("Withdrawal successful.");
+        return true;
     }
+
 
     public void addTransaction(String operation) {
         if (operation != null && !operation.trim().isEmpty()) {
