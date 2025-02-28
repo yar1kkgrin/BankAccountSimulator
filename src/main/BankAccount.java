@@ -53,7 +53,7 @@ public class BankAccount {
             }
             balance += amount;
             transactionHistory.add("Deposited: " + amount);
-            System.out.println("Successfully");
+            System.out.println("Successfully deposited.");
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -76,7 +76,6 @@ public class BankAccount {
         return true;
     }
 
-
     public void addTransaction(String operation) {
         if (operation != null && !operation.trim().isEmpty()) {
             transactionHistory.add(operation);
@@ -87,9 +86,8 @@ public class BankAccount {
 
     public List<String> returnTransactionHistory() {
         if (transactionHistory.isEmpty()) {
-            System.out.println("No transactions.txt found.");
+            System.out.println("No transactions found.");
         }
         return transactionHistory;
     }
-
 }

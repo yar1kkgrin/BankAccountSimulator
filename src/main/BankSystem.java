@@ -1,44 +1,32 @@
 package src.main;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BankSystem {
-    Map<String, Integer> users = new HashMap<>();
+    Map<String, User> users = new HashMap<>();
     private int accountCounter = 1;
     FileManager fileManager = new FileManager();
 
-    User user;
-
     public void registerUser(String name) {
-        for (String user : users.keySet()) {
-            if (user.equals(name)) {
-                System.out.println("User already exists.");
-                return;
-            }
+        if (users.containsKey(name)) {
+            System.out.println("User already exists.");
+            return;
         }
-        users.put(name, 1);
+        users.put(name, new User(name));
         System.out.println("User registered successfully.");
     }
 
     public void createAccount(User user) {
         int newAccountNumber = accountCounter++;
-
         BankAccount newAccount = new BankAccount(newAccountNumber, 0, new ArrayList<>());
-
         user.addAccount(newAccount);
-
         System.out.println("Account created with number: " + newAccountNumber);
     }
 
-    public Integer getUser(String name) {
-        for (Map.Entry<String, Integer> entry : users.entrySet()) {
-            if (entry.getKey().equals(name)) {
-                System.out.println("User with name: " + name + " has ID:");
-                return entry.getValue();
-            }
-        }
-        System.out.println("User with name: " + name + " doesn't exist");
-        return null;
+    public User getUserByName(String name) {
+        return users.get(name);
     }
 
     public void processTransaction(User user, int accountNumber, double amount, boolean isDeposit) {
@@ -75,8 +63,6 @@ public class BankSystem {
             System.out.println("Withdrawal successful. New balance: " + account.getBalance());
         }
 
-        FileManager.saveTransaction("transactions", "Score " + accountNumber + ": " + (isDeposit ? "+" : "-") + amount);
+        FileManager.saveTransaction("transactions", "Account " + accountNumber + ": " + (isDeposit ? "+" : "-") + amount);
     }
-
-
 }
