@@ -1,3 +1,5 @@
+package src.main;
+
 import java.util.List;
 
 public class BankAccount {
@@ -85,10 +87,9 @@ public class BankAccount {
 
     public List<String> returnTransactionHistory() {
         if (transactionHistory.isEmpty()) {
-            System.out.println("No transactions found.");
+            System.out.println("No transactions.txt found.");
         }
         return transactionHistory;
     }
-
 
 }

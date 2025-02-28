@@ -1,3 +1,7 @@
+package src.main;
+
+import src.main.BankAccount;
+
 import java.util.ArrayList;
 import java.util.List;
 
